@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
+import Bloge from "../Bloge/Bloge"
 
-const Bloges = () => {
+const Bloges = ({handelAddBookmarks}) => {
 
     const [bloge,setbloge] = useState([])
 
@@ -11,21 +12,10 @@ const Bloges = () => {
     },[])
 
   return (
-    <div>
+    <div className="w-[70%] mr-15">
         {
-        bloge.map(item => (
-          <div key={item.id}>
-            <img src={item.cover} alt={item.title} style={{ width: '500px' }} />
-            <h2>{item.title}</h2>
-            <p>Author: {item.authore}</p>
-            <img src={item.authore_img} alt={item.authore} style={{ width: '50px', borderRadius: '50%' }} />
-            <p>Date: {item.poste_date}</p>
-            <p>Reading Time: {item.reading_time} min</p>
-            <p>Tags: {item.hashtag.join(', ')}</p>
-            <hr />
-          </div>
-        ))
-      }
+            bloge.map(item => <Bloge key={item.id} item={item} handelAddBookmarks={handelAddBookmarks}/>)
+        }
     </div>
   )
 }
